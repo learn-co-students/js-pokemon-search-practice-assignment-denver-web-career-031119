@@ -38,9 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const filteredPokemonList = POKEMON.filter(function(pokemon) {
       return pokemon.name.includes(event.target.value.toLowerCase());
     });
-    console.log(filteredPokemonList);
-    
-    
+    const searchedPokemon = renderAllThePokemon(filteredPokemonList);
+    console.log(searchedPokemon);
+    thePokemonContainer.innerHTML = searchedPokemon;
+    // thePokemonContainer.innerHTML(searchedPokemon);
   });
 
   function renderAllThePokemon(fullPokemonArray) {
