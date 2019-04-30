@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // console.log(POKEMON)
   //YOUR CODE HERE
   const thePokemonContainer = document.querySelector('#pokemon-container');
+  const thePokemonSearchContainer = document.querySelector('#pokemon-search-form');
 
   thePokemonContainer.innerHTML = renderAllThePokemon(POKEMON);
 
@@ -22,16 +23,29 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(event.target.src);
         event.target.src = clickedPokemon.sprites.back;
       } else {
-        event.target.src = clickedPokemon.sprites.front
+        event.target.src = clickedPokemon.sprites.front;
       }
-      
-      
     }
   })
 
+  let searchString = [];
+
+  thePokemonSearchContainer.addEventListener('input', function(event) {
+    // console.log(event.key);
+    searchString.push(event.key);
+    searchString.join('');
+    console.log(searchString.join(''));
+    const filteredPokemonList = POKEMON.filter(function(pokemon) {
+      return pokemon.name.includes(event.target.value.toLowerCase());
+    });
+    console.log(filteredPokemonList);
+    
+    
+  });
+
   function renderAllThePokemon(fullPokemonArray) {
     return fullPokemonArray.map(renderSinglePokemon).join('');
-  }
+  };
 
   function renderSinglePokemon(singlePokemon) {
     console.log(singlePokemon.sprites.front);
